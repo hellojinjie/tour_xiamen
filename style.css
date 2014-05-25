@@ -2,8 +2,6 @@ body {
   min-height: 100%;
 }
 
-
-
 .gulangyu10 {
   float: left;
   display: inline;
@@ -37,10 +35,13 @@ body {
 .J_protected {
   -webkit-transition: opacity 1s ease-in; //for chrome, safari
   -moz-transition: opacity 1s ease-in; //for mozilla firefox
+  transition: opacity 1s ease-in; //for mozilla firefox
   -o-transition: opacity 1s ease-in; //for opera
+  
 }
 
 .fade-out {
+  -moz-opacity: 0;
   opacity:0;
 }
 .fade-in {
@@ -67,7 +68,13 @@ body {
   height: auto;
   background-image: url(http://tour-xiamen.qiniudn.com/p/city-skyline-wallpapers-008.jpg?imageView/2/h/800/p/85);
   background-size: cover;
-  -webkit-filter: blur(5px);
+  filter: blur(5px); 
+  -webkit-filter: blur(5px); 
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px); 
+  -ms-filter: blur(5px);
+  filter: url(blur.svg#blur);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
   z-index: 0;
   
 }
@@ -81,6 +88,7 @@ body {
   width: auto;
   height: auto;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+  background: linear-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
   z-index: 1;
   opacity: 0.7;
 }
