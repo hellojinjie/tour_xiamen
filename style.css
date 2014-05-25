@@ -1,5 +1,5 @@
 body {
-  min-height: 100% !important;
+  min-height: 100%;
 }
 
 .gulangyu10 {
@@ -32,10 +32,10 @@ body {
   font-size: 24px;
 }
 
-.protected {
+.J_protected {
 }
 
-.presentation-main {
+.J_presentation-main {
   display: none;
 }
 
