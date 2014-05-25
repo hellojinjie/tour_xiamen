@@ -2,6 +2,8 @@ body {
   min-height: 100%;
 }
 
+
+
 .gulangyu10 {
   float: left;
   display: inline;
@@ -33,6 +35,16 @@ body {
 }
 
 .J_protected {
+  -webkit-transition: opacity 1s ease-in; //for chrome, safari
+  -moz-transition: opacity 1s ease-in; //for mozilla firefox
+  -o-transition: opacity 1s ease-in; //for opera
+}
+
+.fade-out {
+  opacity:0;
+}
+.fade-in {
+  opacity:1;
 }
 
 .J_presentation-main {

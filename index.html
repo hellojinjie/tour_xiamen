@@ -209,11 +209,14 @@ if (localStorage['logined'] != undefined && localStorage['logined'] == 'yes') {
     document.querySelector(".J_password-input").addEventListener("keyup", function ( event ) {
         var input = event.target.value;
         if (input == 'iloveyou') {
-            document.querySelector('.J_protected').remove();
-            document.querySelector('.J_music').play();
-            document.querySelector('.J_presentation-main').style.display = 'block';
-            localStorage['logined'] = 'yes';
-            impress().init();
+            document.querySelector('.J_protected').className = "J_protected fade-out";
+            setTimeout(function() {
+                document.querySelector('.J_protected').remove();
+                document.querySelector('.J_music').play();
+                document.querySelector('.J_presentation-main').style.display = 'block';
+                localStorage['logined'] = 'yes';
+                impress().init();
+            }, 1000)
         }
     }, false);
 }
