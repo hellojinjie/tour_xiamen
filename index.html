@@ -205,6 +205,7 @@ function afterLogin() {
     document.querySelector('.J_music').play();
     document.querySelector('.J_presentation-main').style.display = 'block';
     localStorage['logined'] = 'yes';
+    localStorage['lastLogin'] = new Date().getTime();
     impress().init();
 }
 
@@ -216,12 +217,21 @@ function isChrome() {
     return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 }
 
+function isLogined() {
+    if (localStorage['logined'] != undefined && localStorage['logined'] == 'yes') {
+        if (new Date().getTime() - parseInt(localStorage['lastLogin']) <= 1000 * 60 * 60) {
+            return true;
+        }
+    }
+    return false;
+}
+
 if (isMobile()) {
     document.querySelector('.J_presentation-main').remove();
     document.querySelector('.login').remove();
     document.querySelector('.J_hint').innerHTML = '亲亲宝贝，要在电脑上的浏览器才能看哦<br>谷歌浏览器效果最佳。';
 } else {
-    if (localStorage['logined'] != undefined && localStorage['logined'] == 'yes') {
+    if (isLogined()) {
         afterLogin();
     } else {
         document.querySelector(".J_password-input").addEventListener("keyup", function ( event ) {
