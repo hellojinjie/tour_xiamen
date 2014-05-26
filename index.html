@@ -209,7 +209,7 @@ function afterLogin() {
 }
 
 function isMobile() {
-    return /iphone|ipad|ipod|android/.test(navigator.userAgent.toLowerCase());
+    return /iphone|ipad|ipod|android|mobile/i.test(navigator.userAgent.toLowerCase());
 }
 
 function isChrome() {
