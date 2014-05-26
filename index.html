@@ -24,7 +24,7 @@
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
-            <div>亲亲宝贝</div>
+            <div class="J_hint">亲亲宝贝</div>
         </div>
         <br>
         <div class="login">
@@ -200,34 +200,44 @@ if ("ontouchstart" in document.documentElement) {
 <script src="impress.js/js/impress.js"></script>
 <script>
 
-if (localStorage['logined'] != undefined && localStorage['logined'] == 'yes') {
+function afterLogin() {
     document.querySelector('.J_protected').remove();
     document.querySelector('.J_music').play();
     document.querySelector('.J_presentation-main').style.display = 'block';
+    localStorage['logined'] = 'yes';
     impress().init();
+}
+
+function isMobile() {
+    return /iphone|ipad|ipod|android/.test(navigator.userAgent.toLowerCase());
+}
+
+function isChrome() {
+    return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+}
+
+if (isMobile()) {
+    document.querySelector('.J_presentation-main').remove();
+    document.querySelector('.login').remove();
+    document.querySelector('.J_hint').innerHTML = '亲亲宝贝，要在电脑上的浏览器才能看哦<br>谷歌浏览器效果最佳。';
 } else {
-    document.querySelector(".J_password-input").addEventListener("keyup", function ( event ) {
-        var input = event.target.value;
-        if (input == 'iloveyou') {
-            var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-            if (isChrome) {
-                document.querySelector('.J_protected').className = "J_protected fade-out";
-                setTimeout(function() {
-                    document.querySelector('.J_protected').remove();
-                    document.querySelector('.J_music').play();
-                    document.querySelector('.J_presentation-main').style.display = 'block';
-                    localStorage['logined'] = 'yes';
-                    impress().init();
-                }, 1000)
-            } else {
-                document.querySelector('.J_protected').remove();
-                document.querySelector('.J_music').play();
-                document.querySelector('.J_presentation-main').style.display = 'block';
-                localStorage['logined'] = 'yes';
-                impress().init();
+    if (localStorage['logined'] != undefined && localStorage['logined'] == 'yes') {
+        afterLogin();
+    } else {
+        document.querySelector(".J_password-input").addEventListener("keyup", function ( event ) {
+            var input = event.target.value;
+            if (input == 'iloveyou') {
+                if (isChrome()) {
+                    document.querySelector('.J_protected').className = "J_protected fade-out";
+                    setTimeout(function() {
+                        afterLogin();
+                    }, 1000)
+                } else {
+                    afterLogin();
+                }
             }
-        }
-    }, false);
+        }, false);
+    }
 }
 
 </script>
